@@ -1,4 +1,6 @@
-export default ({message}) => (
+import * as React from "react";
+
+export default ({ message }) => (
   <aside>
     {message}
     <style jsx>{`
@@ -10,4 +12,4 @@ export default ({message}) => (
       }
     `}</style>
   </aside>
-)
+);
