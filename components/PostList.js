@@ -1,6 +1,7 @@
 import * as React from "react";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
+import Link from 'next/link'
 
 import ErrorMessage from "./ErrorMessage";
 import PostUpvoter from "./PostUpvoter";
@@ -11,6 +12,7 @@ function PostList({
   data: { loading, error, allPosts, _allPostsMeta },
   loadMorePosts
 }) {
+
   if (error) return <ErrorMessage message="Error loading posts." />;
   if (allPosts && allPosts.length) {
     const areMorePosts = allPosts.length < _allPostsMeta.count;
@@ -21,7 +23,7 @@ function PostList({
             <li key={post.id}>
               <div>
                 <span>{index + 1}. </span>
-                <a href={post.url}>{post.title}</a>
+                <Link href={`posts?url=${post.url}`} as={`/posts/${post.url}`}><a>{post.title}</a></Link>
                 <PostUpvoter id={post.id} votes={post.votes} />
               </div>
             </li>
